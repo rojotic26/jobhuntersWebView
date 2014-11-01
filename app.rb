@@ -2,6 +2,7 @@ require 'sinatra/base'
 require 'jobhunters'
 require 'json'
 
+<<<<<<< HEAD
 class TecolocoJobOffers < Sinatra::Base
 helpers do
   def get_jobs(category)
@@ -12,8 +13,8 @@ helpers do
     }
 
     category = params[:category]
-    JobSearch::Tecoloco.getjobs(category).each do |title, cities|
-      jobs_after['jobs'].push('Titulo' => title, 'Ciudad' => cities)
+    JobSearch::Tecoloco.getjobs(category).each do |title, date, cities|
+      jobs_after['jobs'].push('id' => title, 'date' => date, 'city' => cities)
     end
     jobs_after
   end
