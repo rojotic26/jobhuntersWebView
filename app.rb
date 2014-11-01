@@ -2,7 +2,6 @@ require 'sinatra/base'
 require 'jobhunters'
 require 'json'
 
-<<<<<<< HEAD
 class TecolocoJobOffers < Sinatra::Base
 helpers do
   def get_jobs(category)
