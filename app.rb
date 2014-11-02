@@ -53,5 +53,12 @@ end
     content_type :json
     get_jobs_city(params[:city]).to_json
   end
+  post '/api/v1/all' do
+    content_type:json
+    req = JSON.parse(request.body.read)
+    categories = req['categories']
+    cities = req['cities']
+    list_joboffers(categories,cities).to_json
+  end
 
 end
