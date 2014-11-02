@@ -39,6 +39,13 @@ helpers do
   def get_jobs_cat_city(city)
 
   end
+  def list_joboffers(categories)
+    @list_all = {}
+    categories.each do |category|
+      @list_all[category] = get_jobs(category)
+    end
+    @list_all
+  end
 end
 
   get '/api/v1/job_openings/:category.json' do
@@ -57,8 +64,7 @@ end
     content_type:json
     req = JSON.parse(request.body.read)
     categories = req['categories']
-    cities = req['cities']
-    list_joboffers(categories,cities).to_json
+    list_joboffers(categories).to_json
   end
 
 end
