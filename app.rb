@@ -25,7 +25,11 @@ end
   end
   get '/api/v1/job_openings/:category_:city.json' do
     content_type :json
-    get_jobs_city(params[:category],params[:city]).to_json
+    get_jobs_cat_city(params[:category],params[:city]).to_json
+  end
+  get '/api/v1/job_openings/:city.json' do
+    content_type :json
+    get_jobs_city(params[:city]).to_json
   end
 
 end
