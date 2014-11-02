@@ -49,9 +49,6 @@ helpers do
       end
       @list_all[category] = @list_temp
     end
-
-      end
-   
     @list_all
   end
 end
