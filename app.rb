@@ -41,13 +41,8 @@ helpers do
   end
   def list_joboffers(categories)
     @list_all = {}
-    @list_temp = {}
     categories.each do |category|
-      jobfounds = JobSearch::Tecoloco.getjobs(category)
-      jobfounds.each do |title, date, city|
-        @list_temp.push('id' => title, 'date' => date)
-      end
-      @list_all[category] = @list_temp
+      @list_all[category] = JobSearch::Tecoloco.getjobs(category)
     end
     @list_all
   end
