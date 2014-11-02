@@ -42,7 +42,7 @@ helpers do
   def list_joboffers(categories)
     @list_all = {}
     categories.each do |category|
-      @list_all[category] = JobSearch::Tecoloco.getjobs(category)
+      @list_all[category] = getjobs(category)
     end
     @list_all
   end
@@ -52,16 +52,13 @@ end
     content_type :json
     get_jobs(params[:category]).to_json
   end
-  get '/api/v1/job_openings/:category_:city.json' do
+  get '/api/v1/job_openings/:category/city/:city.json' do
     content_type :json
     get_jobs_cat_city(params[:category],params[:city]).to_json
   end
-  get '/api/v1/job_openings/:city.json' do
-    content_type :json
-    get_jobs_city(params[:city]).to_json
-  end
+
   post '/api/v1/all' do
-    content_type:json
+    content_type :json
     req = JSON.parse(request.body.read)
     categories = req['categories']
     list_joboffers(categories).to_json
