@@ -22,7 +22,7 @@ helpers do
     jobs_after_city = {
       'type of job' => category,
       'kind' => 'openings',
-      'city' => city
+      'city' => city,
       'jobs' => []
     }
 
