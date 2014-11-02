@@ -21,6 +21,10 @@ helpers do
   def get_jobs_cat_city(category,city)
 
   end
+  #Defining the function get_jobs_city
+  def get_jobs_cat_city(city)
+
+  end
 end
 
   get '/api/v1/job_openings/:category.json' do
