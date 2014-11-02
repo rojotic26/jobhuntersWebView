@@ -17,10 +17,41 @@ helpers do
     end
     jobs_after
   end
+  #Defining the function get_jobs_cat_city
+  def get_jobs_cat_city(category,city)
+    jobs_after_city = {
+      'type of job' => category,
+      'kind' => 'openings',
+      'city' => city
+      'jobs' => []
+    }
+
+    category = params[:category]
+    city = params[:city]
+    JobSearch::Tecoloco.getjobs(category).each do |title, date, cities|
+      if cities = city then
+        jobs_after_city['jobs'].push('id' => title, 'date' => date)
+      end
+    end
+    jobs_after_city
+  end
+  #Defining the function get_jobs_city
+  def get_jobs_cat_city(city)
+
+  end
 end
 
   get '/api/v1/job_openings/:category.json' do
     content_type :json
     get_jobs(params[:category]).to_json
   end
+  get '/api/v1/job_openings/:category_:city.json' do
+    content_type :json
+    get_jobs_cat_city(params[:category],params[:city]).to_json
+  end
+  get '/api/v1/job_openings/:city.json' do
+    content_type :json
+    get_jobs_city(params[:city]).to_json
+  end
+
 end
