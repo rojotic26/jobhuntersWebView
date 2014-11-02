@@ -29,7 +29,7 @@ helpers do
     category = params[:category]
     city = params[:city]
     JobSearch::Tecoloco.getjobs(category).each do |title, date, cities|
-      if cities = city then
+      if cities = =city then
         jobs_after_city['jobs'].push('id' => title, 'date' => date)
       end
     end
