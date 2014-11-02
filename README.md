@@ -14,8 +14,8 @@ This elemental WebService consumes the gem jobhunters to obtain information of s
 
 ## Team Members
 
->Mauricio Jaime - mjboyarov@gmail.com / Nicaragua (毛 - 尼加拉瓜)
+>Mauricio Jaime - mjboyarov@gmail.com / Nicaragua (毛里求 - 尼加拉瓜)
 >
 >Roger Gomez - rojotic26@gmail.com / Nicaragua (羅傑 - 尼加拉瓜)
 >
->Edwin Mejia - eddwin@live.com / El Salvador (薩爾瓦多)
+>Edwin Mejia - eddwin@live.com / El Salvador (埃德温 - 薩爾瓦多) 
