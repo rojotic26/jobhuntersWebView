@@ -42,7 +42,7 @@ helpers do
   def list_joboffers(categories)
     @list_all = {}
     categories.each do |category|
-      @list_all[category] = JobSearch::Tecoloco.getjobs(category)
+      @list_all[category] = getjobs(category)
     end
     @list_all
   end
