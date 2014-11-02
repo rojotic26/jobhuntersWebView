@@ -52,14 +52,11 @@ end
     content_type :json
     get_jobs(params[:category]).to_json
   end
-  get '/api/v1/job_openings/:category_:city.json' do
+  get '/api/v1/job_openings/:category/city/:city.json' do
     content_type :json
     get_jobs_cat_city(params[:category],params[:city]).to_json
   end
-  get '/api/v1/job_openings/:city.json' do
-    content_type :json
-    get_jobs_city(params[:city]).to_json
-  end
+  
   post '/api/v1/all' do
     content_type:json
     req = JSON.parse(request.body.read)
