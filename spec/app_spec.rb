@@ -1,5 +1,3 @@
-module JobsHelpers
-  def random_string(n)
-    (0..n).map {('a'..'z').to_a[rand(26)]}.join
-  end
-end
+require_relative 'spec_helper'
+require_relative 'support/jobs_helpers.rb'
+require_relative 'json'
