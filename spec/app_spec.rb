@@ -12,10 +12,19 @@ describe 'Getting the route of the service'
     end
 end
 
-describe 'The sad path'
+describe 'The sad path: Get'
     it 'Should return 404 for unknown categories of jobs offers' do
         get '/api/v1/job_openings/#{random_str(35)}.json'
         last_response.must_be :not_found?
+    end
+end
+
+describe 'The sad path: Post'
+    it 'Should return 400 for bad request' do
+        header = {'CONTENT_TYPE' => 'application/json'}
+        body = random_str(145)
+        post '/api/v1/job_openings/all', body, header
+        last_response.must_be :bad_request?
     end
 end
 
