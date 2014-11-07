@@ -1,6 +1,7 @@
 ====================
 JOBHUNTERS
 ---------------------
+[ ![Codeship Status for rojotic26/jobhuntersWS](https://codeship.io/projects/398aace0-487e-0132-a261-22cfb918076e/status)](https://codeship.io/projects/45892)
 
 ## Usage
 
