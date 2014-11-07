@@ -47,7 +47,9 @@ helpers do
     @list_all
   end
 end
-
+  get '/' do
+    'JobHunters api/v1 is up and working!'
+  end
   get '/api/v1/job_openings/:category.json' do
     content_type :json
     get_jobs(params[:category]).to_json
@@ -56,6 +58,7 @@ end
     content_type :json
     get_jobs_cat_city(params[:category],params[:city]).to_json
   end
+
 
   post '/api/v1/all' do
     content_type :json
