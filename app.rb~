@@ -77,13 +77,13 @@ end
           halt 404
         else
           content_type :json
-          get_jobs(category_url).to_json | ppjson
+          get_jobs(category_url).to_json
         end
 
       end
       get '/job_openings/:category/city/:city.json' do
         content_type :json
-        get_jobs_cat_city(params[:category],params[:city]).to_json | ppjson
+        get_jobs_cat_city(params[:category],params[:city]).to_json
       end
     end
     post '/api/v1/all' do
