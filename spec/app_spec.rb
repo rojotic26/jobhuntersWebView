@@ -22,8 +22,7 @@ end
 describe 'The sad path: Post' do
     it 'Should return 400 for JSON Formattin' do
         header = { 'CONTENT_TYPE' => 'application/json' }
-        body = random_string(50)
-
+        body = random_string(70)
         post '/api/v1/all', body, header
         last_response.must_be :bad_request?
     end

@@ -5,7 +5,9 @@ require 'json'
 
 class TecolocoJobOffers < Sinatra::Base
   register Sinatra::Namespace
-
+  configure :production, :development do
+    enable :logging
+  end
 helpers do
   def get_jobs(category)
     jobs_after = {
@@ -55,7 +57,7 @@ end
   end
 
 
-  namespace 'api/v1' do
+  namespace '/api/v1' do
       get '/job_openings/:category.json' do
         content_type :json
         get_jobs(params[:category]).to_json
@@ -64,17 +66,17 @@ end
         content_type :json
         get_jobs_cat_city(params[:category],params[:city]).to_json
       end
+    end
+    post '/api/v1/all' do
+      content_type :json
+     begin
+       req = JSON.parse(request.body.read)
+       logger.info req
+     rescue
+       halt 400
+     end
+      categories = req['categories']
+      list_joboffers(categories).to_json
+    end
 
-      post '/all' do
-        content_type :json
-       begin
-         req = JSON.parse(request.body.read)
-         logger.info req
-       rescue
-         halt 400
-       end
-        categories = req['categories']
-        list_joboffers(categories).to_json
-      end
-  end
 end
