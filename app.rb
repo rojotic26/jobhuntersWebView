@@ -54,6 +54,7 @@ end
     'JobHunters api/v1 is up and working!'
   end
 
+
   namespace 'api/v1' do
       get '/job_openings/:category.json' do
         content_type :json
@@ -64,10 +65,14 @@ end
         get_jobs_cat_city(params[:category],params[:city]).to_json
       end
 
-
       post '/all' do
         content_type :json
-        req = JSON.parse(request.body.read)
+       begin
+         req = JSON.parse(request.body.read)
+         logger.info req
+       rescue
+         halt 400
+       end
         categories = req['categories']
         list_joboffers(categories).to_json
       end

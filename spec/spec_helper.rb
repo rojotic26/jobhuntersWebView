@@ -9,4 +9,3 @@ include Rack::Test::Methods
 def app
 	TecolocoJobOffers
 end
-
