@@ -1,8 +1,13 @@
 require 'sinatra/base'
+require 'sinatra/namespace'
 require 'jobhunters'
 require 'json'
 
 class TecolocoJobOffers < Sinatra::Base
+  register Sinatra::Namespace
+  configure :production, :development do
+    enable :logging
+  end
 helpers do
   def get_jobs(category)
     jobs_after = {
@@ -36,9 +41,20 @@ helpers do
     jobs_after_city
   end
   #Defining the function get_jobs_city
-  def get_jobs_cat_city(city)
+  def check_cat(category)
+   ##Checks if Category exists within Tecoloco
 
+   case category
+   when  "marketing"
+      @output = "marketing-ventas"
+   when "banca"
+      @output = "banco-servicios-financieros"     
+    else
+      @output = "none"
+    end
+    @output
   end
+
   def list_joboffers(categories)
     @list_all = {}
     categories.each do |category|
@@ -50,21 +66,36 @@ end
   get '/' do
     'JobHunters api/v1 is up and working!'
   end
-  get '/api/v1/job_openings/:category.json' do
-    content_type :json
-    get_jobs(params[:category]).to_json
-  end
-  get '/api/v1/job_openings/:category/city/:city.json' do
-    content_type :json
-    get_jobs_cat_city(params[:category],params[:city]).to_json
-  end
 
 
-  post '/api/v1/all' do
-    content_type :json
-    req = JSON.parse(request.body.read)
-    categories = req['categories']
-    list_joboffers(categories).to_json
-  end
+  namespace '/api/v1' do
+
+      get '/job_openings/:category.json' do
+        cat = params[:category]
+        category_url = check_cat(cat)
+        if category_url == "none" then
+          halt 404
+        else
+          content_type :json
+          get_jobs(category_url).to_json
+        end
+
+      end
+      get '/job_openings/:category/city/:city.json' do
+        content_type :json
+        get_jobs_cat_city(params[:category],params[:city]).to_json
+      end
+    end
+    post '/api/v1/all' do
+      content_type :json
+     begin
+       req = JSON.parse(request.body.read)
+       logger.info req
+     rescue
+       halt 400
+     end
+      categories = req['categories']
+      list_joboffers(categories).to_json
+    end
 
 end
