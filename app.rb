@@ -41,9 +41,20 @@ helpers do
     jobs_after_city
   end
   #Defining the function get_jobs_city
-  def get_jobs_cat_city(city)
+  def check_cat(category)
+   ##Checks if Category exists within Tecoloco
 
+   case category
+   when  "marketing"
+      @output = "marketing-ventas"
+   when "banca"
+      @output = "banco-servicios-financieros"     
+    else
+      @output = "none"
+    end
+    @output
   end
+
   def list_joboffers(categories)
     @list_all = {}
     categories.each do |category|
@@ -58,9 +69,17 @@ end
 
 
   namespace '/api/v1' do
+
       get '/job_openings/:category.json' do
-        content_type :json
-        get_jobs(params[:category]).to_json
+        cat = params[:category]
+        category_url = check_cat(cat)
+        if category_url == "none" then
+          halt 404
+        else
+          content_type :json
+          get_jobs(category_url).to_json
+        end
+
       end
       get '/job_openings/:category/city/:city.json' do
         content_type :json
