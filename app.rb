@@ -2,7 +2,6 @@ require 'sinatra/base'
 require 'sinatra/namespace'
 require 'jobhunters'
 require 'json'
-require 'ppjson'
 
 class TecolocoJobOffers < Sinatra::Base
   register Sinatra::Namespace
@@ -78,13 +77,13 @@ end
           halt 404
         else
           content_type :json
-          JSON.pretty_generate(get_jobs(category_url).to_json)
+          get_jobs(category_url).to_json
         end
 
       end
       get '/job_openings/:category/city/:city.json' do
         content_type :json
-        JSON.pretty_generate(get_jobs_cat_city(params[:category],params[:city]).to_json)
+        get_jobs_cat_city(params[:category],params[:city]).to_json
       end
     end
     post '/api/v1/all' do

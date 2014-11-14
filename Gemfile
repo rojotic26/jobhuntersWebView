@@ -5,7 +5,6 @@ gem 'sinatra'
 gem 'sinatra-contrib'
 gem 'jobhunters'
 gem 'json'
-gem 'ppjson'
 gem 'nokogiri'
 
 group :test do
