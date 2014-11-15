@@ -1,6 +1,6 @@
-*.gem
-*_ignoreme.*
 .bundle/
 db/*.db
+*.gem
+*_ignoreme.*
 Gemfile.lock
 
