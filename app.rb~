@@ -106,6 +106,13 @@ end
       rescue
         halt 400
       end
+      
+      joboffer = Joboffer.new
+      joboffer.title = req['title'].to_json
+      joboffer.city = req['city'].to_json
+      joboffer.date = req['date'].to_json
+      joboffer.details = req['details'].to_json
+      
       if joboffer.save
       status 201
       end
