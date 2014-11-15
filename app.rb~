@@ -101,6 +101,8 @@ end
     post 'api/v1/joboffers' do
     content_type:json
       begin
+        req = JSON.parse(request.body.read)
+        logger.info req
       rescue
       end
       if joboffer.save

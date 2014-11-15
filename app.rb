@@ -104,8 +104,10 @@ end
         req = JSON.parse(request.body.read)
         logger.info req
       rescue
+        halt 400
       end
       if joboffer.save
+      status 201
       end
     end
 
