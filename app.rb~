@@ -2,6 +2,7 @@ require 'sinatra/base'
 require 'sinatra/namespace'
 require 'jobhunters'
 require 'json'
+require_relative 'model/joboffer'
 
 class TecolocoJobOffers < Sinatra::Base
   register Sinatra::Namespace

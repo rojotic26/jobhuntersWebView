@@ -98,5 +98,13 @@ end
       categories = req['categories']
       list_joboffers(categories).to_json
     end
+    post 'api/v1/joboffers' do
+    content_type:json
+      begin
+      rescue
+      end
+      if joboffer.save
+      end
+    end
 
 end
