@@ -41,7 +41,4 @@ DEPENDENCIES
   rake
   sinatra
   sinatra-contrib
-  sqlite3
-  tux
-  pg
 
