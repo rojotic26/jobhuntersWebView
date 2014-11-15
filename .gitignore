@@ -1,0 +1,6 @@
+*.gem
+*_ignoreme.*
+.bundle/
+db/*.db
+Gemfile.lock
+

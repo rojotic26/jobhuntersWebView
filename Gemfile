@@ -9,6 +9,15 @@ gem 'jobhunters'
 gem 'json'
 gem 'nokogiri'
 
+group :development do
+gem 'sqlite3'
+gem 'tux'
+end
+
+group :production
+gem 'pg'
+end
+
 group :test do
 	gem 'minitest'
 	gem 'rack'
