@@ -2,7 +2,7 @@ require 'sinatra/base'
 require 'sinatra/namespace'
 require 'jobhunters'
 require 'json'
-require_relative './model/offer.rb'
+require_relative 'model/offer'
 
 class TecolocoJobOffers < Sinatra::Base
   register Sinatra::Namespace
