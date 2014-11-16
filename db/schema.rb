@@ -22,12 +22,5 @@ ActiveRecord::Schema.define(version: 20141116080754) do
     t.datetime "updated_at"
   end
 
-  create_table "tutorials", force: true do |t|
-    t.string   "description"
-    t.text     "usernames"
-    t.text     "badges"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
 end
