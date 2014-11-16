@@ -2,7 +2,7 @@ require 'sinatra/base'
 require 'sinatra/namespace'
 require 'jobhunters'
 require 'json'
-require_relative 'model/joboffer'
+require './model/joboffer'
 
 class TecolocoJobOffers < Sinatra::Base
   register Sinatra::Namespace
@@ -98,7 +98,7 @@ end
       categories = req['categories']
       list_joboffers(categories).to_json
     end
-    post 'api/v1/joboffers' do
+    post '/api/v1/joboffers' do
     content_type:json
       begin
         req = JSON.parse(request.body.read)
