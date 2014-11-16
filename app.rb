@@ -2,7 +2,7 @@ require 'sinatra/base'
 require 'sinatra/namespace'
 require 'jobhunters'
 require 'json'
-require 'model/joboffer.rb'
+require_relative 'model/offer'
 
 class TecolocoJobOffers < Sinatra::Base
   register Sinatra::Namespace
@@ -49,7 +49,7 @@ helpers do
    when  "marketing"
       @output = "marketing-ventas"
    when "banca"
-      @output = "banco-servicios-financieros"     
+      @output = "banco-servicios-financieros"
     else
       @output = "none"
     end
@@ -64,6 +64,7 @@ helpers do
     @list_all
   end
 end
+
   get '/' do
     'JobHunters api/v1 is up and working!'
   end
@@ -98,7 +99,7 @@ end
       categories = req['categories']
       list_joboffers(categories).to_json
     end
-    post 'api/v1/joboffers' do
+    post '/api/v1/joboffers' do
     content_type:json
       begin
         req = JSON.parse(request.body.read)
@@ -106,16 +107,28 @@ end
       rescue
         halt 400
       end
-      
-      joboffer = Joboffer.new
-      joboffer.title = req['title'].to_json
-      joboffer.city = req['city'].to_json
-      joboffer.date = req['date'].to_json
-      joboffer.details = req['details'].to_json
-      
-      if joboffer.save
+
+
+      cat = Category.new
+
+      cat.description = req['description'].to_json
+
+      if cat.save
       status 201
+      redirect "/api/v1/offers/#{cat.id}"
       end
+    end
+
+    get '/api/v1/offers/:id' do
+    content_type:json
+    begin
+      @category = Category.find(params[:id])
+      cat = JSON.parse(@category.description)
+      
+    rescue
+      halt 400
+    end
+      list_joboffers(cat).to_json
     end
 
 end
