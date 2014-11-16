@@ -29,9 +29,7 @@ GET with categories:
 	http://jobhunters.herokuapp.com/api/v1/all
 	
 >POST /api/v1/offers
->record a query with the parameters you send
-    curl -v -H "Accept: atype: application/json" \ -X POST -d "{\"categories\":[\"marketing-ventas\"]}" \  http://127.0.0.1:9292/api/v1/joboffers
-
+>returns JS
 
 ## Team Members
 

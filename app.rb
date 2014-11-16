@@ -117,7 +117,22 @@ end
 
       if joboffer.save
       status 201
+      redirect "/api/v1/offers/#{offer.id}"
       end
+    end
+    
+    get '/api/v1/offers/:id' do
+    content_type:json
+    begin
+    offer=Offer.find(params[:id])
+    title = JSON.parte(offer.title)
+    city = JSON.parte(offer.city)
+    date = JSON.parte(offer.date)
+    details = JSON.parte(offer.details)
+    logger.info({title:title, city:city, date:date, details:details}.to_json)
+    rescue
+    halt 400
+    end
     end
 
 end
