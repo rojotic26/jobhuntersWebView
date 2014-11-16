@@ -2,7 +2,7 @@ require 'sinatra/base'
 require 'sinatra/namespace'
 require 'jobhunters'
 require 'json'
-require_relative './model/joboffer.rb'
+require_relative './model/offer.rb'
 
 class TecolocoJobOffers < Sinatra::Base
   register Sinatra::Namespace
@@ -107,7 +107,7 @@ end
         halt 400
       end
 
-      joboffer = JobOffer.new
+      joboffer = Offer.new
       joboffer.title = req['title'].to_json
       joboffer.city = req['city'].to_json
       joboffer.date = req['date'].to_json

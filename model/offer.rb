@@ -1,5 +1,5 @@
 require 'sinatra'
 require 'sinatra/activerecord'
 require_relative '../environments'
-class JobOffer < ActiveRecord::Base
+class Offer < ActiveRecord::Base
 end

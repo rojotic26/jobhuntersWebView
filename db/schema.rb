@@ -13,7 +13,7 @@
 
 ActiveRecord::Schema.define(version: 20141116080754) do
 
-  create_table "joboffers", force: true do |t|
+  create_table "offers", force: true do |t|
     t.string   "title"
     t.date     "date"
     t.string   "city"
