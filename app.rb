@@ -64,6 +64,7 @@ helpers do
     @list_all
   end
 end
+
   get '/' do
     'JobHunters api/v1 is up and working!'
   end
@@ -108,31 +109,26 @@ end
       end
 
 
-      joboffer = Offer.new
+      cat = Category.new
 
-      joboffer.title = req['title'].to_json
-      joboffer.city = req['city'].to_json
-      joboffer.date = req['date'].to_json
-      joboffer.details = req['details'].to_json
+      cat.description = req['description'].to_json
 
-      if joboffer.save
+      if cat.save
       status 201
-      redirect "/api/v1/offers/#{offer.id}"
+      redirect "/api/v1/offers/#{cat.id}"
       end
     end
-    
+
     get '/api/v1/offers/:id' do
     content_type:json
     begin
-    offer=Offer.find(params[:id])
-    title = JSON.parte(offer.title)
-    city = JSON.parte(offer.city)
-    date = JSON.parte(offer.date)
-    details = JSON.parte(offer.details)
-    logger.info({title:title, city:city, date:date, details:details}.to_json)
+      @category = Category.find(params[:id])
+      cat = JSON.parse(@category.description)
+      
     rescue
-    halt 400
+      halt 400
     end
+      list_joboffers(cat).to_json
     end
 
 end
