@@ -28,4 +28,19 @@ describe 'The sad path: Post' do
     end
 end
 
+  describe 'Checking available job offers' do
+    it 'should find jobs' do
+      header = { 'CONTENT_TYPE' => 'application/json' }
+      body = {
+        description: 'Check a valid category'
+        category: ['marketing-ventas']
+      }
+
+      post '/api/v1/joboffers', body.to_json, header
+      last_response.must_be :redirect?
+      follow_redirect!
+      last_request.url.must_match /api\/v1\/joboffers\/\d+/
+    end
+  end
+
 end

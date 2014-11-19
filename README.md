@@ -30,7 +30,7 @@ This elemental WebService consumes the gem jobhunters to obtain information of s
 
 - POST /api/v1/offers
 	- record a query with the parameters you send
->curl -v -H "Accept: application/json" -H "Content-type: application/json" \      -X POST -d "{\"description\":[\"marketing-ventas\"]}" \      http://127.0.0.1:9292/api/v1/joboffers
+> curl -v -H "Accept: application/json" -H "Content-type: application/json" \      -X POST -d "{\"category\":[\"marketing-ventas\"]}" \      http://127.0.0.1:9292/api/v1/joboffers
 
 - GET /api/v1/offers/:id
 	- Takes: Id's (1,2,3)
