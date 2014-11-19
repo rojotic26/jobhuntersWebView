@@ -111,7 +111,7 @@ end
 
       cat = Category.new
 
-      cat.description = req['description'].to_json
+      cat.description = req['category'].to_json
 
       if cat.save
       status 201
@@ -124,7 +124,7 @@ end
     begin
       @category = Category.find(params[:id])
       cat = JSON.parse(@category.description)
-      
+
     rescue
       halt 400
     end
