@@ -41,12 +41,11 @@ end
       follow_redirect!
       last_request.url.must_match /api\/v1\/offers\/\d+/
     end
-
   
      it 'should return 404 for unknown users' do
       header = { 'CONTENT_TYPE' => 'application/json' }
       body =   {
-        description: 'Check invalid category',
+        description: 'Check invalid category'
         category: ['marketing-ventas']
       }
       
@@ -56,13 +55,8 @@ end
       last_response.must_be :redirect?
     end
     
-    it 'should return 400 for bad JSON formatting' do
-	header = { 'CONTENT_TYPE' => 'application/json' }
-	body = random_string(50)
-	post '/api/v1/joboffers', body.to_json, header
-	last_response.must_be :bad_request?
-     end
-
   end
+
+  
 
 end
