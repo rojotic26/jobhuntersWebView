@@ -41,6 +41,14 @@ end
       follow_redirect!
       last_request.url.must_match /api\/v1\/offers\/\d+/
     end
+
+    it 'should return 400 for bad JSON formatting' do
+	header = { 'CONTENT_TYPE' => 'application/json' }
+	body = random_string(70)
+	post '/api/v1/joboffers', body.to_json, header
+	last_response.must_be :bad_request?
+     end
+
   end
 
 end
