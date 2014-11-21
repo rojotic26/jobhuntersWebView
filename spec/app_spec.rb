@@ -45,7 +45,7 @@ end
      it 'should return 404 for unknown users' do
       header = { 'CONTENT_TYPE' => 'application/json' }
       body =   {
-        description: 'Check invalid category'
+        description: 'Check invalid category',
         category: ['marketing-ventas']
       }
       
