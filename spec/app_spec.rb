@@ -42,11 +42,11 @@ end
       last_request.url.must_match /api\/v1\/offers\/\d+/
     end
   
-     it 'should return 404 for unknown users' do
+     it 'should return 404 for unknown category' do
       header = { 'CONTENT_TYPE' => 'application/json' }
       body =   {
         description: 'Check invalid category',
-        category: ['marketing-ventas']
+        category: [random_string(45)]
       }
       
       post '/api/v1/joboffers', body.to_json, header
