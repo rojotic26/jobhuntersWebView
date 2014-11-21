@@ -55,8 +55,8 @@ end
       follow_redirect!
       last_response.must_be :redirect?
     end
-    
-    it 'should return 400 for bad JSON formatting' do
+
+     it 'should return 400 for bad JSON formatting' do
 	header = { 'CONTENT_TYPE' => 'application/json' }
 	body = random_string(50)
 	post '/api/v1/joboffers', body.to_json, header
