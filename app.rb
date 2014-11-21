@@ -105,16 +105,21 @@ end
       rescue
         halt 400
       end
-
-
       cat = Category.new
 
       cat.description = req['category'].to_json
-
-      if cat.save
-      status 201
-      redirect "/api/v1/offers/#{cat.id}"
-      end
+      category_url = check_cat(req['category'].to_json)
+        if category_url == "none" then
+          halt 404
+        else
+          
+          if cat.save
+            status 201
+            redirect "/api/v1/offers/#{cat.id}"
+          end
+      
+        end
+      
     end
 
     get '/api/v1/offers/:id' do
@@ -128,5 +133,7 @@ end
     end
       list_joboffers(cat).to_json
     end
+    
+    
 
 end
