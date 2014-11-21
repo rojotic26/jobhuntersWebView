@@ -1,11 +1,11 @@
 require 'sinatra/base'
-require 'sinatra/namespace'
+#require 'sinatra/namespace'
 require 'jobhunters'
 require 'json'
 require_relative 'model/offer'
 
 class TecolocoJobOffers < Sinatra::Base
-  register Sinatra::Namespace
+  #register Sinatra::Namespace
   configure :production, :development do
     enable :logging
   end
@@ -70,9 +70,7 @@ end
   end
 
 
-  namespace '/api/v1' do
-
-      get '/job_openings/:category.json' do
+      get '/api/v1/job_openings/:category.json' do
         cat = params[:category]
         category_url = check_cat(cat)
         if category_url == "none" then
@@ -83,11 +81,11 @@ end
         end
 
       end
-      get '/job_openings/:category/city/:city.json' do
+      get '/api/v1/job_openings/:category/city/:city.json' do
         content_type :json
         get_jobs_cat_city(params[:category],params[:city]).to_json
       end
-    end
+
     post '/api/v1/all' do
       content_type :json
      begin

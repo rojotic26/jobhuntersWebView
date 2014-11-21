@@ -32,7 +32,7 @@ end
     it 'should find jobs' do
       header = { 'CONTENT_TYPE' => 'application/json' }
       body = {
-        description: 'Check a valid category'
+        description: 'Check a valid category',
         category: ['marketing-ventas']
       }
 
