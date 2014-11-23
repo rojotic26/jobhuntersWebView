@@ -1,16 +1,6 @@
 .container
   %form{action: '/joboffers', method: 'get', id: 'category-form'}
-  %br
-  %br
-    %input{type: 'text', name: 'category', id: 'home-form-category', placeholder: 'Category Here. Ex: Marketing'}
-    %select{ :name => "question[question_status]" }
-      %option{:value => 1}= "Guatemala"
-      %option{:value => 2}= "Honduras"
-      %option{:value => 3}= "El Salvador"  
-      %option{:value => 4}= "Nicaragua" 
-      %option{:value => 5}= "Costa Rica"  
-      %option{:value => 6}= "Panama"  
-      %option{:value => 7}= "Republica Dominicana"   
+    %input{type: 'text', name: 'category', id: 'home-form-category', placeholder: 'Category Here. Ex: marketing, banca.'}
     %input{type: 'submit', id: 'home-form-submit', class: 'submit', value: 'submit'}
   %br
   %br
