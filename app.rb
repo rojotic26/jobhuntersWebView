@@ -171,6 +171,7 @@ end
         flash[:notice] = 'Category not found' if @jobofferobject.nil?
         redirect '/joboffers'
       end
+
       haml :joboffers
     end
 
