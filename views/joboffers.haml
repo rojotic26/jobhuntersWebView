@@ -1,5 +1,7 @@
 .container
   %form{action: '/joboffers', method: 'get', id: 'category-form'}
+  %br
+  %br
     %input{type: 'text', name: 'category', id: 'home-form-category', placeholder: 'Category Here. Ex: Marketing'}
     %select{ :name => "question[question_status]" }
       %option{:value => 1}= "Guatemala"
@@ -10,7 +12,9 @@
       %option{:value => 6}= "Panama"  
       %option{:value => 7}= "Republica Dominicana"   
     %input{type: 'submit', id: 'home-form-submit', class: 'submit', value: 'submit'}
-  %p
+  %br
+  %br
+  %br
 
   -if @category
     %table{class: 'center'}
