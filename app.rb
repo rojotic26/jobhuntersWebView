@@ -132,6 +132,19 @@ end
       list_joboffers(cat).to_json
     end
 
-
+    get '/joboffers' do
+    @category = params[:category]
+    if @category
+    redirect "/joboffers/#{@category}"
+    return nil 
+    end
+    haml :joboffers
+    end
+    
+    get '/aboutus' do
+      "Hello World"
+    end
+    
+    
 
 end

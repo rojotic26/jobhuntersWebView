@@ -64,8 +64,9 @@ end
       get '/api/v1/job_openings/marketing.json'
       last_response.must_be :ok?
     end
+    
+        #Sad paths goes here!
 
-    #Sad paths goes here!
   end
 
   describe 'Testing for sad/happy paths on GET /api/v1/job_openings/:category/city/:city.json' do
