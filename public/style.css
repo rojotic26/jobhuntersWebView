@@ -56,8 +56,29 @@ input[type=submit]:hover {
 
 table, th, td
 {
-	text-align: center;
+	text-align: justify;
 	background: #B8E1E3;
+	font-size: 0.90em;
+}
+
+td, th {
+    font-size: 0.90em;
+    border: 1px solid #5A95E8;
+    padding: 3px 7px 2px 7px;
+}
+
+th {
+    font-size: 1.1em;
+    text-align: center;
+    padding-top: 5px;
+    padding-bottom: 4px;
+    background-color: #0078AF;
+    color: #ffffff;
+}
+
+tr.alt td {
+    color: #000000;
+    background-color: #EAF2D3;
 }
 
 table.center {

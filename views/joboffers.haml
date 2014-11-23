@@ -1,28 +1,36 @@
 .container
-  %br
-  %br
   %form{action: '/joboffers', method: 'get', id: 'category-form'}
-  %input{type: 'text', name: 'category', id: 'home-form-category', placeholder: 'Category Here. Ex: Marketing'}
-  %input{type: 'submit', id: 'home-form-submit', class: 'submit', value: 'submit'}
+  %br
+  %br
+    %input{type: 'text', name: 'category', id: 'home-form-category', placeholder: 'Category Here. Ex: Marketing'}
+    %select{ :name => "question[question_status]" }
+      %option{:value => 1}= "Guatemala"
+      %option{:value => 2}= "Honduras"
+      %option{:value => 3}= "El Salvador"  
+      %option{:value => 4}= "Nicaragua" 
+      %option{:value => 5}= "Costa Rica"  
+      %option{:value => 6}= "Panama"  
+      %option{:value => 7}= "Republica Dominicana"   
+    %input{type: 'submit', id: 'home-form-submit', class: 'submit', value: 'submit'}
   %br
   %br
   %br
-  %br
-  %br
+
   -if @category
     %table{class: 'center'}
       %tbody
         %tr
           %th Job
-          %th Country
           %th Date
+          %th Country
+          %th Details
         -@jobofferobject['offers'].each do |offer|
           %tr
-            %td
+            %td{width: '200'}
               = offer['title']
             %td{width: '100'}
               = offer['date']
-            %td{width: '300'}
-              = offer['city']
             %td{width: '100'}
+              = offer['city']
+            %td{width: '400'}
               = offer['details']
