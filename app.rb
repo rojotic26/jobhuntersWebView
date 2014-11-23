@@ -3,10 +3,13 @@ require 'sinatra/base'
 require 'jobhunters'
 require 'json'
 require_relative 'model/offer'
-
+require 'haml'
+require 'sinatra/flash'
 
 class TecolocoJobOffers < Sinatra::Base
   #register Sinatra::Namespace
+  enable :sessions
+  register Sinatra::Flash
   configure :production, :development do
     enable :logging
   end
@@ -67,10 +70,19 @@ helpers do
     end
     @list_all
   end
+
+  def current_page?(path = ' ')
+    path_info = request.path_info
+    path_info += ' ' if path_info == '/'
+    request_path = path_info.split '/'
+    request_path[1] == path
+  end
+
 end
 
+
   get '/' do
-    'JobHunters api/v1 is up and working!'
+    haml :home
   end
 
   get '/api/v1/job_openings/:category.json' do
