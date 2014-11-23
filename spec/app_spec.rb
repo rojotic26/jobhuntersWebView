@@ -66,6 +66,10 @@ end
     end
     
         #Sad paths goes here!
+     it 'should return 404 not found' do
+      get '/api/v1/job_openings/falsecategory.json'
+      last_response.must_be :not_found?
+    end
 
   end
 
@@ -74,6 +78,10 @@ end
    it 'should return jobs' do
      get '/api/v1/job_openings/marketing-ventas/city/Nicaragua.json'
      last_response.must_be :ok?
+   end
+   it 'should return 404 not found' do
+     get '/api/v1/job_openings/marketing-ventas/city/Taiwan.json'
+     last_response.must_be :not_found?
    end
  end
 
