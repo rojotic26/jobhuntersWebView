@@ -1,14 +1,9 @@
 .container
-  %br
-  %br
   %form{action: '/joboffers', method: 'get', id: 'category-form'}
-  %input{type: 'text', name: 'category', id: 'home-form-category', placeholder: 'Category Here. Ex: Marketing'}
-  %input{type: 'submit', id: 'home-form-submit', class: 'submit', value: 'submit'}
-  %br
-  %br
-  %br
-  %br
-  %br
+    %input{type: 'text', name: 'category', id: 'home-form-category', placeholder: 'Category Here. Ex: Marketing'}
+    %input{type: 'submit', id: 'home-form-submit', class: 'submit', value: 'submit'}
+  %p
+
   -if @category
     %table{class: 'center'}
       %tbody
