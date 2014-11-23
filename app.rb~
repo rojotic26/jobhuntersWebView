@@ -14,6 +14,9 @@ class TecolocoJobOffers < Sinatra::Base
     enable :logging
   end
 helpers do
+  def category
+  
+  end
   def get_jobs(category)
     jobs_after = {
       'type of job' => category,
@@ -133,6 +136,7 @@ end
     end
 
     get '/joboffers' do
+    
     @category = params[:category]
     if @category
     redirect "/joboffers/#{@category}"
@@ -142,12 +146,13 @@ end
     end
     
     get '/joboffers/:category' do
+    @jobofferobject = offerobject
     @category = params[:category]
     haml :joboffers
     end
     
     get '/aboutus' do
-      haml:aboutus
+      haml :aboutus
     end
     
     

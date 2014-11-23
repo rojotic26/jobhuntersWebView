@@ -14,6 +14,20 @@ class TecolocoJobOffers < Sinatra::Base
     enable :logging
   end
 helpers do
+  def category
+      cate = params[:category]
+      return nil unless cate
+      catego = { 'id' => id , 'offers' => [], }
+      
+      begin 
+        JobSearch::Tecoloco.getjobs(category).each do |title, city, date|
+        catego['offers'].push('title'=>title,'date'=>date,'city'=>city)
+      end
+      catego
+      rescue
+        nil
+      end
+  end
   def get_jobs(category)
     jobs_after = {
       'type of job' => category,
