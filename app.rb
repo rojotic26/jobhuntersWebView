@@ -16,12 +16,12 @@ class TecolocoJobOffers < Sinatra::Base
 helpers do
   def offerobject
       category = params[:category]
-      return nil unless cate
-      catego = { 'id' => id , 'offers' => [], }
-      
-      begin 
-        JobSearch::Tecoloco.getjobs(category).each do |title, date, cities|
-        catego['offers'].push('title'=>title,'date'=>date,'city'=>cities)
+      return nil unless category
+      catego = { 'id' => category , 'offers' => [], }
+
+      begin
+        JobSearch::Tecoloco.getjobs(category).each do |title, date, cities, details|
+        catego['offers'].push('title'=>title,'date'=>date,'city'=>cities, 'details'=>details)
       end
       catego
       rescue
@@ -36,8 +36,8 @@ helpers do
     }
 
     category = params[:category]
-    JobSearch::Tecoloco.getjobs(category).each do |title, date, cities|
-      jobs_after['jobs'].push('id' => title, 'date' => date, 'city' => cities)
+    JobSearch::Tecoloco.getjobs(category).each do |title, date, cities, details|
+      jobs_after['jobs'].push('id' => title, 'date' => date, 'city' => cities, 'details'=>details)
     end
     jobs_after
   end
@@ -65,7 +65,7 @@ helpers do
     else
     jobs_after_city
     end
-    
+
   end
 
 
@@ -154,29 +154,30 @@ end
     end
 
     get '/joboffers' do
-    
+
     @category = params[:category]
     if @category
-    redirect "/joboffers/#{@category}"
-    return nil 
+      redirect "/joboffers/#{@category}"
+      return nil
     end
-    haml :joboffers
+      haml :joboffers
     end
-    
+
     get '/joboffers/:category' do
-    @jobofferobject = offerobject
-    @category = params[:category]
-    if @category && @jobofferobject.nil?
-    flash[:notice] = 'Category not found' if @jobofferobject.nil?
-    redirect '/joboffers'
+      @jobofferobject = offerobject
+      @category = params[:category]
+
+      if @category && @jobofferobject.nil?
+        flash[:notice] = 'Category not found' if @jobofferobject.nil?
+        redirect '/joboffers'
+      end
+      haml :joboffers
     end
-    haml :joboffers
-    end
-    
+
     get '/aboutus' do
       haml :aboutus
     end
-    
-    
+
+
 
 end

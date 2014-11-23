@@ -1,21 +1,28 @@
 .container
+  %br
+  %br
   %form{action: '/joboffers', method: 'get', id: 'category-form'}
   %input{type: 'text', name: 'category', id: 'home-form-category', placeholder: 'Category Here. Ex: Marketing'}
   %input{type: 'submit', id: 'home-form-submit', class: 'submit', value: 'submit'}
-  %p
-
-  -if @categoria
+  %br
+  %br
+  %br
+  %br
+  %br
+  -if @category
     %table{class: 'center'}
       %tbody
         %tr
-          %th Job 
+          %th Job
           %th Country
           %th Date
         -@jobofferobject['offers'].each do |offer|
           %tr
             %td
               = offer['title']
+            %td{width: '100'}
+              = offer['date']
             %td{width: '300'}
               = offer['city']
             %td{width: '100'}
-              = offer['date']
+              = offer['details']
