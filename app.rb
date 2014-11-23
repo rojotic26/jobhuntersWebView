@@ -14,14 +14,14 @@ class TecolocoJobOffers < Sinatra::Base
     enable :logging
   end
 helpers do
-  def category
-      cate = params[:category]
+  def offerobject
+      category = params[:category]
       return nil unless cate
       catego = { 'id' => id , 'offers' => [], }
       
       begin 
-        JobSearch::Tecoloco.getjobs(category).each do |title, city, date|
-        catego['offers'].push('title'=>title,'date'=>date,'city'=>city)
+        JobSearch::Tecoloco.getjobs(category).each do |title, date, cities|
+        catego['offers'].push('title'=>title,'date'=>date,'city'=>cities)
       end
       catego
       rescue
@@ -159,6 +159,10 @@ end
     get '/joboffers/:category' do
     @jobofferobject = offerobject
     @category = params[:category]
+    if @category && @jobofferobject.nil?
+    flash[:notice] = 'Category not found' if @jobofferobject.nil?
+    redirect '/joboffers'
+    end
     haml :joboffers
     end
     
