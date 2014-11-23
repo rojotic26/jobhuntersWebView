@@ -6,6 +6,7 @@ describe 'Job Offers in CA' do
 include JobsHelpers
 
 describe 'Getting the route of the service'  do
+    #Happy Path of root
     it 'Should return ok' do
         get '/'
         last_response.must_be :ok?
@@ -19,16 +20,8 @@ describe 'The sad path: Get' do
     end
 end
 
-describe 'The sad path: Post' do
-    it 'Should return 400 for JSON Formattin' do
-        header = { 'CONTENT_TYPE' => 'application/json' }
-        body = random_string(70)
-        post '/api/v1/all', body, header
-        last_response.must_be :bad_request?
-    end
-end
-
-  describe 'Checking available job offers via POST' do
+  describe 'Checking available job offers via POST /api/v1/joboffers' do
+    #Happy path of /api/v1/joboffers
     it 'should find jobs' do
       header = { 'CONTENT_TYPE' => 'application/json' }
       body = {
@@ -42,19 +35,18 @@ end
       last_request.url.must_match /api\/v1\/offers\/\d+/
     end
 
-  
-     it 'should return 404 for unknown category' do
-      header = { 'CONTENT_TYPE' => 'application/json' }
-      body =   {
-        description: 'Check invalid category',
-        category: [random_string(45)]
-      }
-      
-      post '/api/v1/joboffers', body.to_json, header
-      last_response.must_be :redirect?
-      follow_redirect!
-      last_response.must_be :redirect?
-    end
+    # it 'should return 404 for unknown category' do
+    #  header = { 'CONTENT_TYPE' => 'application/json' }
+    #  body =   {
+    #    description: 'Check a non-existant category',
+    #    category: ['dssddsdwewenc323sdsdsd']
+    #  }
+
+    #  post '/api/v1/joboffers', body.to_json, header
+    #  last_response.must_be :redirect?
+    #  follow_redirect!
+    #  last_response.must_be :not_found?
+    # end
 
      it 'should return 400 for bad JSON formatting' do
 	header = { 'CONTENT_TYPE' => 'application/json' }
@@ -64,5 +56,24 @@ end
      end
 
   end
+
+  describe 'Testing for sad/happy paths on GET /api/v1/job_openings/:category.json' do
+
+    #Happy path
+    it 'should return jobs' do
+      get '/api/v1/job_openings/marketing.json'
+      last_response.must_be :ok?
+    end
+
+    #Sad paths goes here!
+  end
+
+  describe 'Testing for sad/happy paths on GET /api/v1/job_openings/:category/city/:city.json' do
+    #happy path :)
+   it 'should return jobs' do
+     get '/api/v1/job_openings/marketing-ventas/city/Nicaragua.json'
+     last_response.must_be :ok?
+   end
+ end
 
 end
