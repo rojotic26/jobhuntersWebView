@@ -1,6 +1,6 @@
 .container
   %form{action: '/joboffers', method: 'get', id: 'category-form'}
-    %input{type: 'text', name: 'category', id: 'home-form-category', placeholder: 'Category Here. Ex: Marketing'}
+    %input{type: 'text', name: 'category', id: 'home-form-category', placeholder: 'Category Here. Ex: marketing, banca.'}
     %input{type: 'submit', id: 'home-form-submit', class: 'submit', value: 'submit'}
   %p
 
@@ -9,8 +9,8 @@
       %tbody
         %tr
           %th Job
-          %th Country
           %th Date
+          %th Country
           %th Details
         -@jobofferobject['offers'].each do |offer|
           %tr
