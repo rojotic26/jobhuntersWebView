@@ -73,5 +73,36 @@ end
      last_response.must_be :not_found?
    end
  end
+ 
+ describe 'Testing for sad/happy paths on GET /joboffers' do
 
+    #Happy path
+    it 'should return jobs' do
+      get '/joboffers'
+      last_response.must_be :ok?
+    end
+    
+        #Sad paths goes here!
+     it 'should return 404 not found' do
+      get '/joboffers/falsecategory'
+      last_response.must_be :not_found?
+    end
+
+  end
+
+ describe 'Testing for sad/happy paths on GET /joboffers/category' do
+
+    #Happy path
+    it 'should return jobs' do
+      get '/joboffers/marketing'
+      last_response.must_be :ok?
+    end
+    
+        #Sad paths goes here!
+     it 'should return 404 not found' do
+      get '/joboffers/falsecategory'
+      last_response.must_be :not_found?
+    end
+
+  end
 end
