@@ -9,6 +9,8 @@ This elemental WebService consumes the gem jobhunters to obtain information of s
 
 ## Handles:
 
+## URL in Heroku: http://jobhunters.herokuapp.com/
+
 ##GET
 
 - GET /api/v1/
