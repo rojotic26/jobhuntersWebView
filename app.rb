@@ -17,7 +17,9 @@ class TecolocoJobOffers < Sinatra::Base
     def offerobject
       category = check_cat(params[:category])
        if category == 'none' then
+         
          return nil
+
        end
 
         return nil unless category

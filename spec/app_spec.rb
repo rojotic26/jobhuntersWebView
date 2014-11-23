@@ -35,7 +35,7 @@ end
       last_request.url.must_match /api\/v1\/offers\/\d+/
     end
 
-  
+
 
      it 'should return 400 for bad JSON formatting' do
 	header = { 'CONTENT_TYPE' => 'application/json' }
@@ -53,7 +53,7 @@ end
       get '/api/v1/job_openings/marketing.json'
       last_response.must_be :ok?
     end
-    
+
         #Sad paths goes here!
      it 'should return 404 not found' do
       get '/api/v1/job_openings/falsecategory.json'
@@ -73,7 +73,7 @@ end
      last_response.must_be :not_found?
    end
  end
- 
+
  describe 'Testing for sad/happy paths on GET /joboffers' do
 
     #Happy path
@@ -81,11 +81,11 @@ end
       get '/joboffers'
       last_response.must_be :ok?
     end
-    
+
         #Sad paths goes here!
-     it 'should return 404 not found' do
+     it 'should return 302' do
       get '/joboffers/falsecategory'
-      last_response.must_be :not_found?
+      last_response.must_be :redirect?
     end
 
   end
@@ -97,11 +97,11 @@ end
       get '/joboffers/marketing'
       last_response.must_be :ok?
     end
-    
+
         #Sad paths goes here!
-     it 'should return 404 not found' do
+     it 'should return 302' do
       get '/joboffers/falsecategory'
-      last_response.must_be :not_found?
+      last_response.must_be :redirect?
     end
 
   end
