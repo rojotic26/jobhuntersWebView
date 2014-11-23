@@ -9,6 +9,10 @@ gem 'jobhunters'
 gem 'json'
 gem 'nokogiri'
 
+gem 'sinatra-flash'
+gem 'haml'
+gem 'tilt'
+
 group :development do
 	gem 'sqlite3'
 	gem 'tux'

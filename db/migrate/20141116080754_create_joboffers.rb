@@ -9,6 +9,7 @@ class CreateJoboffers < ActiveRecord::Migration
     end
     create_table :categories do |t|
       t.string :description
+      t.string :category
       t.timestamps
     end
   end

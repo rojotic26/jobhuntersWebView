@@ -1,0 +1,184 @@
+
+html, body
+{
+	height: 100%;
+}
+
+body {
+	margin: 0px;
+	padding: 0px;
+	font-family: 'Source Sans Pro', sans-serif;
+	font-size: 12pt;
+	font-weight: 400;
+	color: #000000;
+}
+
+h1, h2, h3 {
+	margin: 0;
+	padding: 0;
+}
+
+p, ol, ul {
+	margin-top: 0;
+}
+
+ol, ul {
+	padding: 0;
+	list-style: none;
+}
+
+p {
+	line-height: 140%;
+}
+
+a
+{
+	color: #0000FF;
+}
+
+a.lightlink {
+	color: #DDDDDD;
+}
+
+
+input[type=submit] {
+    width: 100px;
+    background-color: #007E99;
+    border: 1px solid #004F66;
+    font-size: large;
+    color: #FFFFFF;
+}
+
+input[type=submit]:hover {
+    background-color: #5BBFA8;
+    cursor: pointer;
+}
+
+table, th, td
+{
+	text-align: center;
+	background: #B8E1E3;
+}
+
+table.center {
+	margin-left:auto;
+	margin-right:auto;
+}
+
+section {
+	background: #EDEDED;
+}
+
+div.flash {
+	text-align: center;
+	color: #FFFFFF;
+	font-weight: bold;
+	background: #FF0000;
+}
+
+
+#header_wrapper {
+	overflow: hidden;
+	padding: 2em 0em;
+	background: #8DCB89 url(header.jpg) no-repeat center;
+	background-size: cover;
+}
+
+#menu ul
+{
+	text-align: left;
+}
+
+#menu li
+{
+	display: inline-block;
+}
+
+#menu li a, #menu li span
+{
+	display: inline-block;
+	margin-left: 0.50em;
+	padding: 1em 1em;
+	letter-spacing: 0.20em;
+	text-decoration: none;
+	font-size: 0.90em;
+	font-weight: 600;
+	text-transform: uppercase;
+	outline: 0;
+	color: #FFF;
+}
+
+#menu .current_page_item a
+{
+	background: #16A7FF;
+	border-radius: 6px;
+	color: #FFF;
+}
+
+
+.title
+{
+	margin-bottom: 3em;
+}
+
+.title h2
+{
+	font-size: 2.8em;
+}
+
+.title h2
+{
+	font-size: 1.8em;
+}
+
+.title .byline
+{
+	letter-spacing: 0.15em;
+	text-transform: uppercase;
+	font-weight: 400;
+	font-size: 1.1em;
+	color: #6F6F6F;
+}
+
+	.container
+	{
+		text-align: center;
+		margin: 0px auto;
+		width: 800px;
+		overflow: hidden;
+		padding: 6em 0em;
+		color: rgba(0,0,0,0.5);
+	}
+
+
+form label
+{
+	display: block;
+	margin-bottom: 0.5em;
+}
+
+form .submit
+{
+
+	background: #72BCEA;
+	border-radius: 2px;
+
+}
+
+.footer {
+	overflow: hidden;
+	padding: 1em 0em;
+	text-align: center;
+	background-color: #1966A6;
+	color: black;
+	font-size: 0.70em;
+}
+
+.user-input {
+	float: left;
+	width: 50%;
+}
+
+.user-output {
+	float: left;
+}
