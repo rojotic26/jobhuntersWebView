@@ -79,7 +79,7 @@ div.flash {
 
 #header_wrapper {
 	overflow: hidden;
-	padding: 5em 0em;
+	padding: 2em 0em;
 	background: #8DCB89 url(header.jpg) no-repeat center;
 	background-size: cover;
 }
@@ -98,7 +98,7 @@ div.flash {
 {
 	display: inline-block;
 	margin-left: 0.50em;
-	padding: 1em 1.5em;
+	padding: 1em 1em;
 	letter-spacing: 0.20em;
 	text-decoration: none;
 	font-size: 0.90em;
@@ -146,7 +146,7 @@ div.flash {
 		margin: 0px auto;
 		width: 800px;
 		overflow: hidden;
-		padding: 5em 0em;
+		padding: 6em 0em;
 		color: rgba(0,0,0,0.5);
 	}
 
@@ -167,9 +167,11 @@ form .submit
 
 .footer {
 	overflow: hidden;
-	padding: 5em 0em;
+	padding: 1em 0em;
 	text-align: center;
+	background-color: #1966A6;
 	color: black;
+	font-size: 0.70em;
 }
 
 .user-input {
