@@ -1,0 +1,23 @@
+.container
+
+  %form{action: '/joboffers', method: 'get', id: 'user-form'}
+  %select
+  %option{:value => "marketing"} Marketing
+  %option{:value => "finance"} Finance
+  %option{:value => "callcenter"} Call Center
+  %option{:value => "telecommunications"} Telecommunications
+  %input{type: 'submit', id: 'home-form-submit', class: 'submit', value: 'submit'}
+  %p
+
+  -if @category[category] = JobSearch::Tecoloco.getjobs(category)
+    %table{class: 'center'}
+      %tbody
+        %tr
+          %th Job 
+          %th Country
+        -@category['category'].each do |offer|
+          %tr
+            %td
+              = offer['title']
+            %td{width: '300'}
+              = offer['cities']
