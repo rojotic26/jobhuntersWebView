@@ -140,5 +140,11 @@ end
     end
     haml :joboffers
     end
+    
+    get '/aboutus' do
+      "Hello World"
+    end
+    
+    
 
 end

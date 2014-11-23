@@ -142,7 +142,7 @@ end
     end
     
     get '/aboutus' do
-      "Hello World"
+      haml:aboutus
     end
     
     
