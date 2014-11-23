@@ -1,7 +1,7 @@
 .container
 
   %form{action: '/joboffers', method: 'get', id: 'user-form'}
-  %input{type: 'text', id: 'home-form-submit', class: 'submit', value: 'submit'}
+
   %input{type: 'submit', id: 'home-form-submit', class: 'submit', value: 'submit'}
   %p
 

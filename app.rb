@@ -133,6 +133,7 @@ end
     end
 
     get '/joboffers' do
+    
     @category = params[:category]
     if @category
     redirect "/joboffers/#{@category}"
@@ -141,8 +142,14 @@ end
     haml :joboffers
     end
     
+    get '/joboffers/:category' do
+    @jobofferobject = offerobject
+    @category = params[:category]
+    haml :joboffers
+    end
+    
     get '/aboutus' do
-      haml:aboutus
+      haml :aboutus
     end
     
     

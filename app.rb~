@@ -141,8 +141,13 @@ end
     haml :joboffers
     end
     
+    get '/joboffers/:category' do
+    @category = params[:category]
+    haml :joboffers
+    end
+    
     get '/aboutus' do
-      "Hello World"
+      haml:aboutus
     end
     
     
