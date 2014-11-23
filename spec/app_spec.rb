@@ -35,18 +35,7 @@ end
       last_request.url.must_match /api\/v1\/offers\/\d+/
     end
 
-    # it 'should return 404 for unknown category' do
-    #  header = { 'CONTENT_TYPE' => 'application/json' }
-    #  body =   {
-    #    description: 'Check a non-existant category',
-    #    category: ['dssddsdwewenc323sdsdsd']
-    #  }
-
-    #  post '/api/v1/joboffers', body.to_json, header
-    #  last_response.must_be :redirect?
-    #  follow_redirect!
-    #  last_response.must_be :not_found?
-    # end
+  
 
      it 'should return 400 for bad JSON formatting' do
 	header = { 'CONTENT_TYPE' => 'application/json' }
@@ -84,5 +73,36 @@ end
      last_response.must_be :not_found?
    end
  end
+ 
+ describe 'Testing for sad/happy paths on GET /joboffers' do
 
+    #Happy path
+    it 'should return jobs' do
+      get '/joboffers'
+      last_response.must_be :ok?
+    end
+    
+        #Sad paths goes here!
+     it 'should return 404 not found' do
+      get '/joboffers/falsecategory'
+      last_response.must_be :not_found?
+    end
+
+  end
+
+ describe 'Testing for sad/happy paths on GET /joboffers/category' do
+
+    #Happy path
+    it 'should return jobs' do
+      get '/joboffers/marketing'
+      last_response.must_be :ok?
+    end
+    
+        #Sad paths goes here!
+     it 'should return 404 not found' do
+      get '/joboffers/falsecategory'
+      last_response.must_be :not_found?
+    end
+
+  end
 end

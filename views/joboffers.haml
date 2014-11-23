@@ -11,13 +11,14 @@
           %th Job
           %th Country
           %th Date
+          %th Details
         -@jobofferobject['offers'].each do |offer|
           %tr
-            %td
+            %td{width: '200'}
               = offer['title']
             %td{width: '100'}
               = offer['date']
-            %td{width: '300'}
-              = offer['city']
             %td{width: '100'}
+              = offer['city']
+            %td{width: '400'}
               = offer['details']
