@@ -35,18 +35,7 @@ end
       last_request.url.must_match /api\/v1\/offers\/\d+/
     end
 
-    # it 'should return 404 for unknown category' do
-    #  header = { 'CONTENT_TYPE' => 'application/json' }
-    #  body =   {
-    #    description: 'Check a non-existant category',
-    #    category: ['dssddsdwewenc323sdsdsd']
-    #  }
-
-    #  post '/api/v1/joboffers', body.to_json, header
-    #  last_response.must_be :redirect?
-    #  follow_redirect!
-    #  last_response.must_be :not_found?
-    # end
+  
 
      it 'should return 400 for bad JSON formatting' do
 	header = { 'CONTENT_TYPE' => 'application/json' }
