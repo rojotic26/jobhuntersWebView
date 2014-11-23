@@ -3,13 +3,31 @@ require 'sinatra/base'
 require 'jobhunters'
 require 'json'
 require_relative 'model/offer'
+require 'haml'
+require 'sinatra/flash'
 
 class TecolocoJobOffers < Sinatra::Base
   #register Sinatra::Namespace
+  enable :sessions
+  register Sinatra::Flash
   configure :production, :development do
     enable :logging
   end
 helpers do
+  def offerobject
+      category = params[:category]
+      return nil unless cate
+      catego = { 'id' => id , 'offers' => [], }
+      
+      begin 
+        JobSearch::Tecoloco.getjobs(category).each do |title, date, cities|
+        catego['offers'].push('title'=>title,'date'=>date,'city'=>cities)
+      end
+      catego
+      rescue
+        nil
+      end
+  end
   def get_jobs(category)
     jobs_after = {
       'type of job' => category,
@@ -23,6 +41,8 @@ helpers do
     end
     jobs_after
   end
+
+
   #Defining the function get_jobs_cat_city
   def get_jobs_cat_city(category,city)
     jobs_after_city = {
@@ -31,7 +51,6 @@ helpers do
       'city' => city,
       'jobs' => []
     }
-
     category = params[:category]
     city = params[:city]
     JobSearch::Tecoloco.getjobs(category).each do |title, date, cities|
@@ -41,6 +60,8 @@ helpers do
     end
     jobs_after_city
   end
+
+
   #Defining the function get_jobs_city
   def check_cat(category)
    ##Checks if Category exists within Tecoloco
@@ -63,66 +84,55 @@ helpers do
     end
     @list_all
   end
+
+  def current_page?(path = ' ')
+    path_info = request.path_info
+    path_info += ' ' if path_info == '/'
+    request_path = path_info.split '/'
+    request_path[1] == path
+  end
+
 end
 
+
   get '/' do
-    'JobHunters api/v1 is up and working!'
+    haml :home
+  end
+
+  get '/api/v1/job_openings/:category.json' do
+    cat = params[:category]
+    category_url = check_cat(cat)
+      if category_url == "none" then
+        halt 404
+      else
+        content_type :json
+        get_jobs(category_url).to_json
+      end
+
+  end
+
+  get '/api/v1/job_openings/:category/city/:city.json' do
+    content_type :json
+    get_jobs_cat_city(params[:category],params[:city]).to_json
   end
 
 
-      get '/api/v1/job_openings/:category.json' do
-        cat = params[:category]
-        category_url = check_cat(cat)
-        if category_url == "none" then
-          halt 404
-        else
-          content_type :json
-          get_jobs(category_url).to_json
-        end
-
-      end
-      get '/api/v1/job_openings/:category/city/:city.json' do
-        content_type :json
-        get_jobs_cat_city(params[:category],params[:city]).to_json
-      end
-
-    post '/api/v1/all' do
-      content_type :json
-     begin
-       req = JSON.parse(request.body.read)
-       logger.info req
-     rescue
-       halt 400
-     end
-      categories = req['categories']
-      list_joboffers(categories).to_json
-    end
-    post '/api/v1/joboffers' do
+  post '/api/v1/joboffers' do
     content_type:json
-      begin
-        req = JSON.parse(request.body.read)
-        logger.info req
-      rescue
+    begin
+      req = JSON.parse(request.body.read)
+      logger.info req
+    rescue
         halt 400
-      end
-
-
-      cat = Category.new
-
-      cat.description = req['category'].to_json
-      category_url = check_cat(cat.description)
-        if category_url == "none" then
-          halt 404
-        else
-          
-          if cat.save
-            status 201
-            redirect "/api/v1/offers/#{cat.id}"
-          end
-      
-        end
-      
     end
+
+    cat = Category.new
+    cat.description = req['description'].to_json
+    if cat.save
+      status 201
+      redirect "/api/v1/offers/#{cat.id}"
+    end
+  end
 
     get '/api/v1/offers/:id' do
     content_type:json
@@ -134,6 +144,30 @@ end
       halt 400
     end
       list_joboffers(cat).to_json
+    end
+
+    get '/joboffers' do
+    
+    @category = params[:category]
+    if @category
+    redirect "/joboffers/#{@category}"
+    return nil 
+    end
+    haml :joboffers
+    end
+    
+    get '/joboffers/:category' do
+    @jobofferobject = offerobject
+    @category = params[:category]
+    if @category && @jobofferobject.nil?
+    flash[:notice] = 'Category not found' if @jobofferobject.nil?
+    redirect '/joboffers'
+    end
+    haml :joboffers
+    end
+    
+    get '/aboutus' do
+      haml :aboutus
     end
     
     
