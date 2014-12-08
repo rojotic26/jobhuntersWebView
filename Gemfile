@@ -3,11 +3,8 @@ source "https://rubygems.org"
 
 gem 'sinatra'
 gem 'sinatra-contrib'
-gem 'activerecord'
-gem 'sinatra-activerecord'
-gem 'jobhunters'
 gem 'json'
-gem 'nokogiri'
+gem 'httparty'
 
 gem 'sinatra-flash'
 gem 'haml'
