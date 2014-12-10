@@ -8,7 +8,7 @@ require 'httparty'
 
 ##
 # Web application to obtain Job offers from TECOLOCO
-class Prognition < Sinatra::Base
+class TecolocoJobOffers < Sinatra::Base
   enable :sessions
   register Sinatra::Flash
   use Rack::MethodOverride
@@ -21,8 +21,8 @@ class Prognition < Sinatra::Base
     set :session_secret, "something"    # ignore if not using shotgun in development
   end
 
-  API_BASE_URI = 'http://jobhunters.herokuapp.com/joboffers'
-  API_VER = '/api/v2/'
+  API_BASE_URI = 'http://jobhunterservice.herokuapp.com'
+  #API_VER = '/api/v2/'
   # Assigning nothing to the version variable
   API_VER = ''
   helpers do
@@ -43,7 +43,7 @@ class Prognition < Sinatra::Base
   end
 
  post '/offers' do
-    request_url = "#{API_BASE_URI}/api/v1/joboffers"
+    request_url = "#{API_BASE_URI}/api/v2/joboffers"
     category = params[:category].split("\r\n")
     city = params[:city].split("\r\n")
     param = {
@@ -55,7 +55,10 @@ class Prognition < Sinatra::Base
       body: param.to_json,
       headers: { 'Content-Type' => 'application/json' }
     }
+    logger.info 'request URL' + request_url
+    logger.info 'request' + request.to_s
     result = HTTParty.post(request_url, request)
+    logger.info 'result ' + result.code.to_s
 
     if (result.code != 200)
       flash[:notice] = 'The values provided did not match any result'
@@ -86,7 +89,7 @@ class Prognition < Sinatra::Base
     @action = :update
     haml :offers
   end
-  
+
   get '/joboffers' do
 
     @category = params[:category]
@@ -108,7 +111,7 @@ class Prognition < Sinatra::Base
     end
     haml :joboffers
   end
-  
+
   get '/aboutus' do
     haml :aboutus
   end
@@ -116,7 +119,7 @@ class Prognition < Sinatra::Base
   get '/offers' do
     haml :offers
   end
-  
+
   delete '/offers/:id' do
       request_url = "#{API_BASE_URI}/api/v1/joboffers/#{params[:id]}"
       result = HTTParty.delete(request_url)
