@@ -58,7 +58,7 @@ class TecolocoJobOffers < Sinatra::Base
     logger.info 'request URL' + request_url
     logger.info 'request' + request.to_s
     result = HTTParty.post(request_url, request)
-    logger.info 'result ' + result.code.to_s
+    logger.info 'result ' + result.code.to_s=
 
     if (result.code != 200)
       flash[:notice] = 'The values provided did not match any result'
