@@ -43,7 +43,7 @@ class TecolocoJobOffers < Sinatra::Base
   end
 
   post '/offers' do
-    request_url = "#{API_BASE_URI}/api/v2/joboffers"
+    request_url = "#{API_BASE_URI}/api/v2/offers"
     category = params[:category].split("\r\n")
     city = params[:city].split("\r\n")
     param = {
@@ -81,6 +81,7 @@ class TecolocoJobOffers < Sinatra::Base
       @city = session[:city]
     else
       request_url = "#{API_BASE_URI}/api/v1/offers/#{params[:id]}"
+      logger 'hello'
       request = { headers: {'Content-Type' => 'application/json' } }
       result = HTTParty.get(request_url,request)
       @results = result
