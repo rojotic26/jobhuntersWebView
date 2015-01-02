@@ -21,7 +21,7 @@ class TecolocoJobOffers < Sinatra::Base
     set :session_secret, "something"    # ignore if not using shotgun in development
   end
 
-  API_BASE_URI = 'http://jobhunterservice.herokuapp.com'
+  API_BASE_URI = 'http://jobdynamo.herokuapp.com/'
   #API_VER = '/api/v2/'
   # Assigning nothing to the version variable
   API_VER = ''
@@ -42,7 +42,7 @@ class TecolocoJobOffers < Sinatra::Base
     haml :home
   end
 
- post '/offers' do
+  post '/offers' do
     request_url = "#{API_BASE_URI}/api/v2/joboffers"
     category = params[:category].split("\r\n")
     city = params[:city].split("\r\n")
@@ -58,7 +58,7 @@ class TecolocoJobOffers < Sinatra::Base
     logger.info 'request URL' + request_url
     logger.info 'request' + request.to_s
     result = HTTParty.post(request_url, request)
-    logger.info 'result ' + result.code.to_s=
+    logger.info 'result ' + result.code.to_s
 
     if (result.code != 200)
       flash[:notice] = 'The values provided did not match any result'
@@ -74,7 +74,7 @@ class TecolocoJobOffers < Sinatra::Base
     redirect "/offers/#{id}"
   end
 
-    get '/offers/:id' do
+  get '/offers/:id' do
     if session[:action] == :create
       @results = JSON.parse(session[:result])
       @category = session[:category]
@@ -121,9 +121,9 @@ class TecolocoJobOffers < Sinatra::Base
   end
 
   delete '/offers/:id' do
-      request_url = "#{API_BASE_URI}/api/v1/joboffers/#{params[:id]}"
-      result = HTTParty.delete(request_url)
-      flash[:notice] = 'record of job offers deleted'
-      redirect '/offers'
+    request_url = "#{API_BASE_URI}/api/v1/joboffers/#{params[:id]}"
+    result = HTTParty.delete(request_url)
+    flash[:notice] = 'record of job offers deleted'
+    redirect '/offers'
   end
 end
