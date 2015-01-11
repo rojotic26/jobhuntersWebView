@@ -85,12 +85,7 @@ class TecolocoJobOffers < Sinatra::Base
       @category = session[:category]
       @city = session[:city]
     else
-<<<<<<< HEAD
-      request_url = "#{API_BASE_URI}/api/v1/offers/#{params[:id]}"
-      logger 'hello'
-=======
       request_url = "#{API_BASE_URI}/api/v2/offers/#{params[:id]}"
->>>>>>> develop
       request = { headers: {'Content-Type' => 'application/json' } }
       result = HTTParty.get(request_url,request)
       @results = result
