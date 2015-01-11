@@ -43,7 +43,11 @@ class TecolocoJobOffers < Sinatra::Base
   end
 
   post '/offers' do
+<<<<<<< HEAD
+    request_url = "#{API_BASE_URI}/api/v2/offers"
+=======
     request_url = "#{API_BASE_URI}/api/v3/offers"
+>>>>>>> develop
     category = params[:category].split("\r\n")
     city = params[:city].split("\r\n")
     param = {
