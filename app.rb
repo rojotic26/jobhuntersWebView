@@ -21,7 +21,7 @@ class TecolocoJobOffers < Sinatra::Base
     set :session_secret, "something"    # ignore if not using shotgun in development
   end
 
-  API_BASE_URI = 'http://jobdynamo.herokuapp.com/'
+  API_BASE_URI = 'http://localhost:9292'
   #API_VER = '/api/v2/'
   # Assigning nothing to the version variable
   API_VER = ''
@@ -43,7 +43,11 @@ class TecolocoJobOffers < Sinatra::Base
   end
 
   post '/offers' do
+<<<<<<< HEAD
     request_url = "#{API_BASE_URI}/api/v2/offers"
+=======
+    request_url = "#{API_BASE_URI}/api/v3/offers"
+>>>>>>> develop
     category = params[:category].split("\r\n")
     city = params[:city].split("\r\n")
     param = {
@@ -67,6 +71,7 @@ class TecolocoJobOffers < Sinatra::Base
     end
 
     id = result.request.last_uri.path.split('/').last
+    logger.info 'result' + result.to_s
     session[:result] = result.to_json
     session[:category] = category
     session[:city] = city
@@ -80,8 +85,12 @@ class TecolocoJobOffers < Sinatra::Base
       @category = session[:category]
       @city = session[:city]
     else
+<<<<<<< HEAD
       request_url = "#{API_BASE_URI}/api/v1/offers/#{params[:id]}"
       logger 'hello'
+=======
+      request_url = "#{API_BASE_URI}/api/v2/offers/#{params[:id]}"
+>>>>>>> develop
       request = { headers: {'Content-Type' => 'application/json' } }
       result = HTTParty.get(request_url,request)
       @results = result
