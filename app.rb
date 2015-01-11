@@ -21,7 +21,7 @@ class TecolocoJobOffers < Sinatra::Base
     set :session_secret, "something"    # ignore if not using shotgun in development
   end
 
-  API_BASE_URI = 'http://localhost:9292'
+  API_BASE_URI = 'https://jobdynamo.herokuapp.com/'
   #API_VER = '/api/v2/'
   # Assigning nothing to the version variable
   API_VER = ''
